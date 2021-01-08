@@ -30,6 +30,6 @@ jobs:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           NODE_ENV: test
         with:
-          command: npm run test:e2e
+          command: echo App is running
           start: npm run start-prod
           wait-on: http://localhost:3001
