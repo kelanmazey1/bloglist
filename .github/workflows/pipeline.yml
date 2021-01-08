@@ -40,9 +40,9 @@ jobs:
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         uses: akhileshns/heroku-deploy@v3.8.8
         with:
-          rollbackonhealthcheckfailed: true
-          healthcheck: https://fullstackopen-bloglist.herokuapp.com/health
-          checkstring: ok
+          # rollbackonhealthcheckfailed: true
+          # healthcheck: https://fullstackopen-bloglist.herokuapp.com/health
+          # checkstring: ok
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'fullstackopen-bloglist'
           heroku_email: 'kelanmazey1@gmail.com'
