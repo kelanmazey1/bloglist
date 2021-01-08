@@ -9,13 +9,11 @@ import Togglable from './components/Togglable';
 
 import blogService from './services/blogs';
 
-
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
   const [notification, setNotification] = useState(null);
   const [isError, setIsError] = useState(false);
-
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -104,7 +102,7 @@ const App = () => {
                     />
                   ),
                 )}
-              </div>
+            </div>
           </div>
         )}
     </div>

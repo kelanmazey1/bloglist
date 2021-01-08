@@ -32,7 +32,6 @@ const Blog = (props) => {
     // props.mockLike();
   };
 
-
   const showDeleteButton = () => {
     if (currentUser.username === blog.user.username) {
       return (

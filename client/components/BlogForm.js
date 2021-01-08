@@ -23,8 +23,8 @@ const BlogForm = (props) => {
       url,
       user: currentUser.id,
     };
-    // this is here from testing, leaving it here just in case I need to test again 
-    //props.mockAddBlog();
+    // this is here from testing, leaving it here just in case I need to test again
+    // props.mockAddBlog();
 
     const response = await blogService.createBlog(newBlog);
 

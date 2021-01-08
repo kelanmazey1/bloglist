@@ -25,22 +25,26 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add('login', ({ username, password }) => {
   cy.request('POST', 'http://localhost:3001/api/login', {
-    username, password
+    username, password,
   }).then(({ body }) => {
-    localStorage.setItem('loggedBlogappUser', JSON.stringify(body))
-    cy.visit('http://localhost:3001')
-  })
-})
+    localStorage.setItem('loggedBlogappUser', JSON.stringify(body));
+    cy.visit('http://localhost:3001');
+  });
+});
 
-Cypress.Commands.add('createBlog', ({ author, title, url, likes }) => {
+Cypress.Commands.add('createBlog', ({
+  author, title, url, likes,
+}) => {
   cy.request({
-    method: 'POST', 
+    method: 'POST',
     url: 'http://localhost:3001/api/blogs',
-    body: { author, title, url, likes },
-    headers: { 
-      'Authorization': `bearer ${JSON.parse(localStorage.getItem('loggedBlogappUser')).token}`
+    body: {
+      author, title, url, likes,
+    },
+    headers: {
+      Authorization: `bearer ${JSON.parse(localStorage.getItem('loggedBlogappUser')).token}`,
     },
   });
 
-  cy.visit('http://localhost:3001')
-})
+  cy.visit('http://localhost:3001');
+});

@@ -1,7 +1,4 @@
 /* eslint-disable prefer-arrow-callback */
-
-import { oneOfType } from "prop-types";
-
 /* eslint-disable func-names */
 describe('Blog app', function () {
   beforeEach(function () {
@@ -20,7 +17,7 @@ describe('Blog app', function () {
     cy.get('#username');
     cy.get('#password');
     cy.get('#login-button')
-      .should('have.text', 'login')
+      .should('have.text', 'login');
   });
 
   describe('Login', function () {
@@ -42,7 +39,6 @@ describe('Blog app', function () {
         .should('contain', 'Wrong Credentials')
         .and('have.css', 'color', 'rgb(255, 0, 0)')
         .and('have.css', 'border-style', 'solid');
-
     });
 
     describe('When logged in', function () {
@@ -66,10 +62,10 @@ describe('Blog app', function () {
 
       describe('Alter single blog', function () {
         beforeEach(function () {
-          cy.createBlog({ 
+          cy.createBlog({
             author: 'cypress',
             title: 'cypress wrote this title',
-            url: 'https://docs.cypress.io/'
+            url: 'https://docs.cypress.io/',
           });
         });
 
@@ -87,7 +83,7 @@ describe('Blog app', function () {
             .should('contain', 'like')
             .click();
 
-            cy.get('.likes').should('contain', 'likes 1');
+          cy.get('.likes').should('contain', 'likes 1');
         });
 
         it('a blog can be deleted by the authorized user', function () {
@@ -104,47 +100,43 @@ describe('Blog app', function () {
           cy.get('.html')
             .should('not.contain', 'cypress wrote this title cypress');
         });
-        
       });
 
       describe.only('Multiple blogs', function () {
         beforeEach(function () {
-          cy.createBlog({ 
+          cy.createBlog({
             author: 'cypress again..',
             title: 'this should be 2nd',
             url: 'https://somuchcypress',
-            likes: 5
+            likes: 5,
           });
-          
-          cy.createBlog({ 
+
+          cy.createBlog({
             author: 'cypress no likes',
             title: 'this should be last',
             url: 'https://google.co.uk',
-            likes: 0
+            likes: 0,
           });
 
-          cy.createBlog({ 
+          cy.createBlog({
             author: 'cypress',
             title: 'this should be top',
             url: 'https://docs.cypress.io/',
             likes: 10,
           });
-    
         });
         // this works as the most liked blog should appear in the DOM first and always be blog 1
         it('blogs are ordered by likes', function () {
           cy.get('.blog')
             .each((blog, index) => {
-              cy.wrap(blog).as(`blog ${index + 1}`)
-            })
-          
+              cy.wrap(blog).as(`blog ${index + 1}`);
+            });
+
           cy.get('@blog 1').should('contain', 'this should be top');
           cy.get('@blog 2').should('contain', 'this should be 2nd');
           cy.get('@blog 3').should('contain', 'this should be last');
-        
         });
       });
     });
   });
 });
-
