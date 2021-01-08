@@ -22,11 +22,13 @@ jobs:
       - name: test
         env:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          NODE_ENV: test
         run: npm run test
       - name: e2e test
         uses: cypress-io/github-action@v2
         env:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          NODE_ENV: test
         with:
           command: npm run test:e2e
           start: npm run start-prod-test
