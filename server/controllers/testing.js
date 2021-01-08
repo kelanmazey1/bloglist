@@ -3,6 +3,10 @@ const router = require('express').Router();
 const Blog = require('../models/blog');
 const User = require('../models/user');
 
+router.get('/', (req, res) => {
+  res.send('ping');
+});
+
 router.post('/reset', async (request, response) => {
   await Blog.deleteMany({});
   await User.deleteMany({});
