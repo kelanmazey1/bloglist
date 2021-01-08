@@ -46,14 +46,14 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'fullstackopen-bloglist'
           heroku_email: 'kelanmazey1@gmail.com'
-      - name: Send slack notification
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,commit,author,eventName,ref,took
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') && always() }}
+      # - name: Send slack notification
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     status: ${{ job.status }}
+      #     fields: repo,commit,author,eventName,ref,took
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #   if: ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') && always() }}
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
