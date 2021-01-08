@@ -31,5 +31,5 @@ jobs:
           NODE_ENV: test
         with:
           command: npm run test:e2e
-          start: npm run start-prod-test
+          start: npm run start-prod
           wait-on: http://localhost:3001
